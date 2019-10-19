@@ -102,3 +102,48 @@ CREATE TABLE Address_AddressType
   FOREIGN KEY (AddressFK) REFERENCES Address(AddressID),
   FOREIGN KEY (AddressTypeFK) REFERENCES AddressType(AdressTypeID)
 );
+
+CREATE TABLE Genre
+(
+  GenreID INT(3) NOT NULL,
+  GenreName VARCHAR(30) NOT NULL,
+  PRIMARY KEY (GenreID)
+);
+
+INSERT INTO Genre VALUES (1, "Mystery");
+INSERT INTO Genre VALUES (2, "Fantasy");
+INSERT INTO Genre VALUES (3, "Nonfiction");
+INSERT INTO Genre VALUES (4, "Young Adult");
+INSERT INTO Genre VALUES (5, "Realistic Fiction");
+
+CREATE TABLE BookName
+(
+  BookNameID INT(4) NOT NULL,
+  BookName VARCHAR(255) NOT NULL,
+  PRIMARY KEY (BookNameID)
+);
+
+INSERT INTO BookName VALUES (1, "The Solitude of Prime Numbers");
+INSERT INTO BookName VALUES (2, "Perfect");
+INSERT INTO BookName VALUES (3, "Impulse");
+
+CREATE TABLE ISBN
+(
+  ISBN VARCHAR(17) NOT NULL,
+  BookID INT(4) NOT NULL,
+  PRIMARY KEY (ISBN),
+  FOREIGN KEY (BookID) REFERENCES Book(BookID)
+);
+
+INSERT INTO ISBN VALUES ("9781441833675", 1);
+INSERT INTO ISBN VALUES ("9781416983255", 2);
+INSERT INTO ISBN VALUES ("9781598877564", 3);
+
+
+CREATE TABLE Book_Genre
+(
+  GenreID INT(3) NOT NULL,
+  BookID INT(4) NOT NULL,
+  FOREIGN KEY (GenreID) REFERENCES Genre(GenreID),
+  FOREIGN KEY (BookID) REFERENCES Book(BookID)
+);
